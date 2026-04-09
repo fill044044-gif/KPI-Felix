@@ -1,0 +1,629 @@
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Презентация: новая система мотивации сети кафе-пекарен</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --accent: #f59e0b;
+      --accent-2: #22c55e;
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --danger: #ef4444;
+      --line: rgba(255,255,255,0.12);
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #0b1220, #111827 50%, #1e293b);
+      color: var(--text);
+      font-family: Inter, Arial, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    .deck {
+      width: 100%;
+    }
+
+    .slide {
+      min-height: 100vh;
+      padding: 64px 72px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+    }
+
+    .slide::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(245,158,11,0.12), transparent 28%),
+                  radial-gradient(circle at bottom left, rgba(34,197,94,0.12), transparent 30%);
+      pointer-events: none;
+    }
+
+    .kicker {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1, h2, h3, p, ul, .grid, .table-wrap, .hero-stats, .note, .compare {
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: 56px;
+      line-height: 1.05;
+      margin: 0 0 20px;
+      max-width: 1100px;
+    }
+
+    h2 {
+      font-size: 40px;
+      line-height: 1.1;
+      margin: 0 0 20px;
+      max-width: 1000px;
+    }
+
+    h3 {
+      font-size: 24px;
+      margin: 0 0 12px;
+    }
+
+    p {
+      font-size: 22px;
+      line-height: 1.5;
+      color: var(--muted);
+      max-width: 1100px;
+      margin: 0 0 16px;
+    }
+
+    ul {
+      margin: 8px 0 0;
+      padding-left: 24px;
+      max-width: 1100px;
+    }
+
+    li {
+      font-size: 22px;
+      line-height: 1.5;
+      color: var(--muted);
+      margin: 10px 0;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 30px;
+      max-width: 1200px;
+    }
+
+    .stat, .card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 24px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+    }
+
+    .stat .value {
+      font-size: 40px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .stat .label {
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin-top: 20px;
+    }
+
+    .grid.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card strong {
+      color: var(--text);
+    }
+
+    .accent {
+      color: var(--accent);
+    }
+
+    .success {
+      color: var(--accent-2);
+    }
+
+    .danger {
+      color: var(--danger);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .pill {
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--line);
+      font-size: 16px;
+      color: var(--text);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 18px;
+      color: var(--text);
+      overflow: hidden;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.05);
+    }
+
+    th, td {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .table-wrap {
+      max-width: 1200px;
+      margin-top: 22px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+    }
+
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      max-width: 1200px;
+      margin-top: 20px;
+    }
+
+    .compare .card {
+      min-height: 100%;
+    }
+
+    .note {
+      margin-top: 22px;
+      padding: 18px 20px;
+      background: rgba(245,158,11,0.08);
+      border-left: 4px solid var(--accent);
+      border-radius: 16px;
+      max-width: 1100px;
+      color: var(--text);
+      font-size: 20px;
+      line-height: 1.45;
+    }
+
+    .nav {
+      position: fixed;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 20;
+    }
+
+    .nav a {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.28);
+      border: 1px solid rgba(255,255,255,0.4);
+      display: block;
+    }
+
+    .nav a:hover {
+      background: var(--accent);
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 20px;
+      right: 28px;
+      color: rgba(255,255,255,0.35);
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      z-index: 1;
+    }
+
+    @media (max-width: 1024px) {
+      .slide { padding: 40px 24px; }
+      h1 { font-size: 38px; }
+      h2 { font-size: 30px; }
+      p, li { font-size: 18px; }
+      .hero-stats, .grid, .grid.three, .compare { grid-template-columns: 1fr; }
+      .nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="#s1"></a>
+    <a href="#s2"></a>
+    <a href="#s3"></a>
+    <a href="#s4"></a>
+    <a href="#s5"></a>
+    <a href="#s6"></a>
+    <a href="#s7"></a>
+    <a href="#s8"></a>
+    <a href="#s9"></a>
+    <a href="#s10"></a>
+  </nav>
+
+  <main class="deck">
+    <section class="slide" id="s1">
+      <div class="kicker">Презентация решения</div>
+      <h1>Новая система мотивации для сети кафе-пекарен из 7 точек</h1>
+      <p>Пересборка мотивации на основе экономики сети, операционной модели, анализа поведения персонала и ABC-анализа ассортимента.</p>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="value">15.35 млн ₽</div>
+          <div class="label">месячная выручка сети</div>
+        </div>
+        <div class="stat">
+          <div class="value">1.6 млн ₽</div>
+          <div class="label">операционная прибыль</div>
+        </div>
+        <div class="stat">
+          <div class="value">25%</div>
+          <div class="label">ФОТ от выручки</div>
+        </div>
+        <div class="stat">
+          <div class="value">180 ₽</div>
+          <div class="label">текущий средний чек</div>
+        </div>
+      </div>
+      <div class="footer">01</div>
+    </section>
+
+    <section class="slide" id="s2">
+      <div class="kicker">Исходная модель бизнеса</div>
+      <h2>Что было учтено при разработке мотивации</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Структура сети</h3>
+          <ul>
+            <li>3 точки полного цикла с отгрузкой на 3 буфета.</li>
+            <li>1 точка полного цикла без отгрузки.</li>
+            <li>Собственный заготовочный цех работает с минимальной наценкой на покрытие затрат.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Управленческий контур</h3>
+          <ul>
+            <li>Операционный директор.</li>
+            <li>4 управляющих.</li>
+            <li>Линейный персонал: кассиры, пекари, кухонные работники.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Экономические вводные</h3>
+          <ul>
+            <li>Средний чек можно поднять с <strong>180 ₽</strong> до <strong>200 ₽</strong>.</li>
+            <li>Потенциал роста трафика — до <strong>20%</strong>, но это зона маркетинга.</li>
+            <li>Списания низкие: около <strong>1.5%</strong>.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Вывод</h3>
+          <p><strong class="accent">Главный управляемый драйвер прибыли — средний чек и продажа маржинальных позиций.</strong></p>
+        </div>
+      </div>
+      <div class="footer">02</div>
+    </section>
+
+    <section class="slide" id="s3">
+      <div class="kicker">Диагностика</div>
+      <h2>Почему прежняя система мотивации не зарабатывает максимум денег</h2>
+      <div class="compare">
+        <div class="card">
+          <h3 class="danger">Проблемы текущей модели</h3>
+          <ul>
+            <li>Основной KPI — оборот, хотя он зависит от трафика и маркетинга.</li>
+            <li>Использовалась «маржа» как наценка, а не как прибыль.</li>
+            <li>Отсутствовал KPI среднего чека.</li>
+            <li>Не было отдельной мотивации на допродажи и напитки.</li>
+            <li>Часть показателей была субъективной и слабосвязанной с деньгами.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 class="success">Что нужно изменить</h3>
+          <ul>
+            <li>Платить за действия, которые реально меняют прибыль.</li>
+            <li>Перенести фокус на средний чек и структуру продаж.</li>
+            <li>Привязать руководителей к приросту валовой прибыли.</li>
+            <li>Оставить в бонусе не более 3–4 KPI.</li>
+            <li>Использовать ABC-анализ для выделения «золотых» товаров.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note">Ключевой принцип новой системы: <strong>не мотивировать «работать», а мотивировать продавать нужный ассортимент и повышать чек.</strong></div>
+      <div class="footer">03</div>
+    </section>
+
+    <section class="slide" id="s4">
+      <div class="kicker">ABC-анализ</div>
+      <h2>Что показал анализ ассортимента</h2>
+      <div class="grid three">
+        <div class="card">
+          <h3>Ядро продаж</h3>
+          <ul>
+            <li>Хлеб.</li>
+            <li>Сосиска в тесте.</li>
+            <li>Беляш.</li>
+            <li>Пироги с базовыми начинками.</li>
+            <li>Хачапури и мини-пицца.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Упущенная прибыль</h3>
+          <ul>
+            <li>Высоконаценочные позиции продаются слабее, чем могут.</li>
+            <li>Напитки не выступают драйвером продаж.</li>
+            <li>Часть сладкой выпечки и пицц недопродаётся.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Проблема ассортимента</h3>
+          <ul>
+            <li>Большой хвост C-позиций.</li>
+            <li>Размытый фокус на витрине.</li>
+            <li>Кассир не продвигает выгодные товары системно.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="pill">База = A-товары</span>
+        <span class="pill">Золото = высокомаржинальные товары</span>
+        <span class="pill">Хвост = C-позиции под сокращение</span>
+      </div>
+      <div class="footer">04</div>
+    </section>
+
+    <section class="slide" id="s5">
+      <div class="kicker">Целевая архитектура</div>
+      <h2>Новая система мотивации: кому и за что платим</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Роль</th>
+              <th>Главная цель</th>
+              <th>KPI</th>
+              <th>Принцип бонуса</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Кассир</td>
+              <td>Поднимать чек и допродавать</td>
+              <td>Средний чек, продажи «золотых» товаров</td>
+              <td>Поштучный бонус за чек и за нужные позиции</td>
+            </tr>
+            <tr>
+              <td>Управляющий</td>
+              <td>Управлять продажами точки</td>
+              <td>Средний чек, доля маржинальных товаров, ФОТ %, выручка</td>
+              <td>Процент от прироста валовой прибыли точки</td>
+            </tr>
+            <tr>
+              <td>Операционный директор</td>
+              <td>Масштабировать модель на всю сеть</td>
+              <td>Валовая прибыль сети, средний чек, доля маржинальных товаров, ФОТ %</td>
+              <td>Процент от роста прибыли сети + KPI-модификаторы</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="footer">05</div>
+    </section>
+
+    <section class="slide" id="s6">
+      <div class="kicker">Мотивация кассиров</div>
+      <h2>Простая система, которую можно объяснить за 3 минуты</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Правила выплаты</h3>
+          <ul>
+            <li>Если средний чек ниже 180 ₽ — бонуса нет.</li>
+            <li>Средний чек 180–200 ₽ — <strong>+5 ₽ за чек</strong>.</li>
+            <li>Средний чек выше 200 ₽ — <strong>+12 ₽ за чек</strong>.</li>
+            <li>За каждую продажу товара из списка «Золото» — <strong>+15 ₽</strong>.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Что входит в «Золото»</h3>
+          <ul>
+            <li>Напитки.</li>
+            <li>Выбранные сладкие позиции.</li>
+            <li>Высоконаценочные пиццы и выпечка.</li>
+            <li>Товары, которые недопродаются при хорошем потенциале прибыли.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note">Эта схема меняет поведение кассира: он начинает не просто пробивать покупки, а активно делать допродажу.</div>
+      <div class="footer">06</div>
+    </section>
+
+    <section class="slide" id="s7">
+      <div class="kicker">Мотивация руководителей</div>
+      <h2>Управляющий и операционный директор становятся владельцами результата</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Управляющий точки</h3>
+          <ul>
+            <li><strong>40%</strong> — средний чек точки.</li>
+            <li><strong>30%</strong> — доля «золотых» товаров в выручке.</li>
+            <li><strong>20%</strong> — ФОТ %.</li>
+            <li><strong>10%</strong> — выручка.</li>
+            <li>Бонус: <strong>5% от прироста валовой прибыли точки</strong>.</li>
+            <li>Блокер: если чек ниже 180 ₽, бонус = 0.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Операционный директор</h3>
+          <ul>
+            <li><strong>40%</strong> — валовая прибыль сети.</li>
+            <li><strong>30%</strong> — средний чек сети.</li>
+            <li><strong>20%</strong> — доля маржинальных товаров.</li>
+            <li><strong>10%</strong> — ФОТ % сети.</li>
+            <li>Бонус: <strong>5–7% от роста прибыли сети</strong>.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer">07</div>
+    </section>
+
+    <section class="slide" id="s8">
+      <div class="kicker">Финансовый эффект</div>
+      <h2>Почему новая система окупается</h2>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="value">+1.7 млн ₽</div>
+          <div class="label">прирост выручки при чеке 200 ₽</div>
+        </div>
+        <div class="stat">
+          <div class="value">+765 тыс. ₽</div>
+          <div class="label">прирост валовой прибыли</div>
+        </div>
+        <div class="stat">
+          <div class="value">~300 тыс. ₽</div>
+          <div class="label">оценка бонусных выплат</div>
+        </div>
+        <div class="stat">
+          <div class="value">~465 тыс. ₽</div>
+          <div class="label">чистый финансовый эффект</div>
+        </div>
+      </div>
+      <div class="note">Логика системы: платить только с результата. Бонус — это не расход, а инвестиция с положительным ROI.</div>
+      <div class="footer">08</div>
+    </section>
+
+    <section class="slide" id="s9">
+      <div class="kicker">Сравнение</div>
+      <h2>Новая система vs система, разработанная ранее</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Критерий</th>
+              <th>Старая система</th>
+              <th>Новая система</th>
+              <th>Что это меняет</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Главный KPI</td>
+              <td>Оборот и наценка</td>
+              <td>Средний чек и валовая прибыль</td>
+              <td>Фокус смещается с формального оборота на реальные деньги</td>
+            </tr>
+            <tr>
+              <td>Связь с действиями кассира</td>
+              <td>Слабая</td>
+              <td>Прямая</td>
+              <td>Кассир понимает, что конкретно надо продать</td>
+            </tr>
+            <tr>
+              <td>Использование ABC</td>
+              <td>Нет</td>
+              <td>Есть</td>
+              <td>Маржинальные товары становятся объектом управления</td>
+            </tr>
+            <tr>
+              <td>Сложность</td>
+              <td>Высокая</td>
+              <td>Низкая</td>
+              <td>Система быстрее внедряется и легче контролируется</td>
+            </tr>
+            <tr>
+              <td>Роль управляющего</td>
+              <td>Операционный администратор</td>
+              <td>Мини-директор точки</td>
+              <td>Появляется ответственность за продажи и прибыль</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="footer">09</div>
+    </section>
+
+    <section class="slide" id="s10">
+      <div class="kicker">Внедрение</div>
+      <h2>План запуска на 14 дней</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Неделя 1</h3>
+          <ul>
+            <li>Утвердить список «золотых» товаров.</li>
+            <li>Собрать шаблон отчёта по кассирам и точкам.</li>
+            <li>Обучить управляющих и кассиров.</li>
+            <li>Настроить ежедневный контроль среднего чека.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Неделя 2</h3>
+          <ul>
+            <li>Запустить пилот на 1–2 точках.</li>
+            <li>Проверить корректность бонусов.</li>
+            <li>Сравнить чек, долю допродаж и долю «золотых» товаров.</li>
+            <li>После калибровки масштабировать на весь юнит.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note">Финальный результат: простая, прозрачная и финансово работающая система мотивации, которая растит прибыль быстрее фонда оплаты труда.</div>
+      <div class="footer">10</div>
+    </section>
+  </main>
+</body>
+</html>
